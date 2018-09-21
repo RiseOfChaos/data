@@ -84,13 +84,12 @@ class BuildingStats {
   });
 }
 
-const townCenter = BuildingStats(
+const cityCenter = BuildingStats(
   info: BuildingInfo(0,
-      name: 'Town center',
+      name: 'City center',
       description:
-          'The city center limits the number of buildings in a city. It also '
-          'has storage and produces a bit of wood and iron so new cities can '
-          'begin construction.'),
+          'The city center expands the building capacity of a city. It also '
+          'provides storage space to store resources.'),
   cost: Levels.list([
     ConstResource(adamantium: 0, magnetite: 0),
     ConstResource(adamantium: 50, magnetite: 0),
@@ -112,13 +111,13 @@ const townCenter = BuildingStats(
   levelReq: 0,
 );
 
-const lumberCamp = BuildingStats(
+const quarry = BuildingStats(
   info: BuildingInfo(1,
-      name: 'Lumber camp',
+      name: 'Quarry',
       description:
-          'Place lumber camps near as many trees as you can in order to produce '
-          'lots of wood. Lumber camp wood production will be further increased '
-          'by touching houses and at most one Timber Mill.'),
+          'Place Adamantium Quarry near as many forests as you can in order to '
+          'extract Adamantium ore. Neighbouring Houses and at most one Adamantium'
+          'Smithery will boost the production.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -142,8 +141,9 @@ const ironWorks = BuildingStats(
   info: BuildingInfo(2,
       name: 'Iron works',
       description:
-          'Place Ironworks touching as many bogs as possible to maximize production. '
-          'Bungalows and at most one Ironmongery will multiply production even more.'),
+          'Place Iron Works neighbouring as many bogs as possible to extract Magnetite ore. '
+          'Neighbouring Houses and at most one Iron Mongery will multiply production '
+          'even more.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -163,41 +163,13 @@ const ironWorks = BuildingStats(
   levelReq: 2,
 );
 
-const market = BuildingStats(
-  info: BuildingInfo(3,
-      name: 'Market',
-      description:
-          'Markets enable merchant caravans to set up business and will give your '
-          'city up to 200 carts to ship goods over land. Additionally they '
-          'will generate gold in taxes. Gold production will be further '
-          'increased by every touching house.'),
-  cost: Levels.list([
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-  ]),
-  production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
-  buildTime:
-      Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
-  rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
-  levelReq: 5,
-);
-
-const timberMill = BuildingStats(
+const house = BuildingStats(
   info: BuildingInfo(4,
-      name: 'Timber mill',
+      name: 'House',
       description:
-          'Refines lumber produces in Lumber camp. Situate a timber mill touching '
-          'as many lumber camps as possible to give them a production boost. '
-          'Warehouses that are next to Timber Mills will also adjust their '
-          'storage schemes to have extra room for lumber.'),
+      'Houses give workers and soldiers a good home. Resource production buildings '
+          'neighbouring houses get production boost. Each house offers upto 100 '
+          'space for military.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -212,41 +184,15 @@ const timberMill = BuildingStats(
   ]),
   production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
   buildTime:
-      Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
+  Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
   rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
-  levelReq: 6,
-);
-
-const ironMongery = BuildingStats(
-  info: BuildingInfo(4,
-      name: 'Iron mongery',
-      description:
-          'Refines iron produced in Iron Works. Iron Mongeries that touch Iron Works '
-          'will give them a big boost in production. Warehouses touching '
-          'Iron Mongeries will make additional room for storing ingots.'),
-  cost: Levels.list([
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-    ConstResource(adamantium: 50, magnetite: 50),
-  ]),
-  production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
-  buildTime:
-      Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
-  rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
-  levelReq: 6,
+  levelReq: 1,
 );
 
 const warehouse = BuildingStats(
-  info: BuildingInfo(4,
+  info: BuildingInfo(1,
       name: 'Warehouse',
-      description: 'Provides storage space of upto 10000 for each resource.'
+      description: 'Provides storage space to store extra resources. '
           'Warehouses can be specialized to store more of a resource by placing them '
           'next to a refinement facility for that resource. Bonuses from multiple '
           'refinement facilities will stack up.'),
@@ -269,13 +215,14 @@ const warehouse = BuildingStats(
   levelReq: 1,
 );
 
-const house = BuildingStats(
+const smithery = BuildingStats(
   info: BuildingInfo(4,
-      name: 'House',
+      name: 'Smithery',
       description:
-          'Houses give workers and soldiers a good home. Resource production buildings '
-          'must touch houses to get a benefit. Each house offers upto 1000 space for'
-          'military.'),
+          'Refines Adamantium produced in Quarry. Placing the smithery '
+          'neighbouring as many Quarries as possible to give them a production boost. '
+          'Warehouses that neighbour Smithery will also adjust their storage schemes '
+          'to have extra room for Adamantium.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -292,12 +239,90 @@ const house = BuildingStats(
   buildTime:
       Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
   rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
-  levelReq: 1,
+  levelReq: 6,
+);
+
+const mongery = BuildingStats(
+  info: BuildingInfo(4,
+      name: 'Iron Mongery',
+      description:
+          'Refines Magnetite produced in Iron Works. Iron Mongeries that neighbour '
+          'Iron Works will give them a production boost. Warehouses touching '
+          'Iron Mongeries will make additional room for storing Magnetite.'),
+  cost: Levels.list([
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+  ]),
+  production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
+  buildTime:
+      Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
+  rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
+  levelReq: 6,
+);
+
+const uraniumMine = BuildingStats(
+  info: BuildingInfo(3,
+      name: 'Uranium mine',
+      description:
+          'Extracts Uranium ore from Uranium mines. Neighbouring Houses and at '
+          'most one Enrichment plant will boost production even more.'),
+  cost: Levels.list([
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+  ]),
+  production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
+  buildTime:
+      Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
+  rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
+  levelReq: 5,
+);
+
+const enrichmentPlant = BuildingStats(
+  info: BuildingInfo(4,
+      name: 'Enrichment plant',
+      description:
+          'Enriches Uranium produced in Uranium Mines. Enrichment Plants boost the '
+          'production of neighbouring Uranium Mines. Warehouses neighbouring '
+          'Enrichment Plants will boost the storage space for Uranium.'),
+  cost: Levels.list([
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+  ]),
+  production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
+  buildTime:
+      Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
+  rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
+  levelReq: 6,
 );
 
 const barrack = BuildingStats(
-  info:
-      BuildingInfo(4, name: 'Barrack', description: 'Recruits infantry units.'),
+  info: BuildingInfo(4,
+      name: 'Barrack',
+      description: 'Military building that recruits infantry units.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -317,8 +342,10 @@ const barrack = BuildingStats(
   levelReq: 5,
 );
 
-const archery = BuildingStats(
-  info: BuildingInfo(4, name: 'Archery', description: 'Recuits ranged units.'),
+const plasmaRange = BuildingStats(
+  info: BuildingInfo(4,
+      name: 'Plasma range',
+      description: 'Recuits ranged units that shoot Plasma rays.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -338,8 +365,11 @@ const archery = BuildingStats(
   levelReq: 5,
 );
 
-const stable = BuildingStats(
-  info: BuildingInfo(4, name: 'Stable', description: 'Recuits mounted units.'),
+const battery = BuildingStats(
+  info: BuildingInfo(4,
+      name: 'Battery',
+      description:
+          'Recuits units mounting fast moving levitated vehicles powered by nuclear batteries.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -359,9 +389,11 @@ const stable = BuildingStats(
   levelReq: 7,
 );
 
-const siegeWorkshop = BuildingStats(
+const artillery = BuildingStats(
   info: BuildingInfo(4,
-      name: 'Siege workshop', description: 'Recuits siege units.'),
+      name: 'Artillery',
+      description:
+          'Recuits artillery units that specialize in using radioactive material to demolish walls and buildings.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -381,14 +413,8 @@ const siegeWorkshop = BuildingStats(
   levelReq: 8,
 );
 
-const dock = BuildingStats(
-  info: BuildingInfo(4,
-      name: 'Dock',
-      description:
-          'A multi purpose (economy and military) water building. It produces '
-          'merchant ships to set up business and will give your city up to '
-          '200 ships to transport goods over the sea. Additionally, they enable '
-          'recuitment of war ships.'),
+const airbase = BuildingStats(
+  info: BuildingInfo(4, name: 'Airbase', description: 'Recruits aircrafts.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -409,17 +435,17 @@ const dock = BuildingStats(
 );
 
 const buildings = [
-  townCenter,
-  lumberCamp,
+  cityCenter,
+  quarry,
   ironWorks,
-  market,
-  timberMill,
-  ironMongery,
+  uraniumMine,
+  smithery,
+  enrichmentPlant,
   warehouse,
   house,
   barrack,
-  archery,
-  stable,
-  siegeWorkshop,
-  dock
+  plasmaRange,
+  battery,
+  artillery,
+  airbase
 ];
