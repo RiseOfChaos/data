@@ -108,7 +108,7 @@ const militia = UnitStats._(
     armor: 0,
     pierceArmor: 0,
     attackUnit: 5,
-    cost: ConstResource(iron: 50));
+    cost: ConstResource(magnetite: 50));
 
 const spearMan = UnitStats._(
     info: UnitInfo(1,
@@ -121,7 +121,7 @@ const spearMan = UnitStats._(
     armor: 1,
     pierceArmor: 0,
     attackUnit: 2,
-    cost: ConstResource(wood: 20, iron: 70));
+    cost: ConstResource(adamantium: 20, magnetite: 70));
 
 const skirmisher = UnitStats._(
     info: UnitInfo(2,
@@ -133,7 +133,7 @@ const skirmisher = UnitStats._(
     armor: 0,
     pierceArmor: 0,
     attackUnit: 2,
-    cost: ConstResource(wood: 40, iron: 30));
+    cost: ConstResource(adamantium: 40, magnetite: 30));
 
 const archer = UnitStats._(
     info: UnitInfo(3,
@@ -145,7 +145,7 @@ const archer = UnitStats._(
     armor: 0,
     pierceArmor: 0,
     attackUnit: 5,
-    cost: ConstResource(wood: 30, iron: 30, gold: 30));
+    cost: ConstResource(adamantium: 30, magnetite: 30, uranium: 30));
 
 const knight = UnitStats._(
     info: UnitInfo(4,
@@ -160,7 +160,7 @@ const knight = UnitStats._(
     attackUnit: 10,
     space: 2,
     movementSpeed: 2,
-    cost: ConstResource(iron: 100, gold: 50));
+    cost: ConstResource(magnetite: 100, uranium: 50));
 
 const cavalryArcher = UnitStats._(
     info: UnitInfo(5,
@@ -175,7 +175,7 @@ const cavalryArcher = UnitStats._(
     attackUnit: 5,
     space: 2,
     movementSpeed: 2,
-    cost: ConstResource(wood: 100, gold: 75));
+    cost: ConstResource(adamantium: 100, uranium: 75));
 
 const mage = UnitStats._(
     info: UnitInfo(6,
@@ -187,7 +187,7 @@ const mage = UnitStats._(
     armor: 0,
     pierceArmor: 0,
     attackUnit: 12,
-    cost: ConstResource(gold: 150, valour: 50));
+    cost: ConstResource(uranium: 150, valour: 50));
 
 const dragonRider = UnitStats._(
     info: UnitInfo(7,
@@ -200,7 +200,7 @@ const dragonRider = UnitStats._(
     pierceArmor: 2,
     attackUnit: 10,
     attackBuilding: 4,
-    cost: ConstResource(gold: 150, valour: 100));
+    cost: ConstResource(uranium: 150, valour: 100));
 
 const ram = UnitStats._(
     info: UnitInfo(8,
@@ -214,7 +214,7 @@ const ram = UnitStats._(
     attackUnit: 2,
     attackWall: 10,
     attackBuilding: 2,
-    cost: ConstResource(iron: 50, gold: 50));
+    cost: ConstResource(magnetite: 50, uranium: 50));
 
 const catapult = UnitStats._(
     info: UnitInfo(9,
@@ -228,7 +228,7 @@ const catapult = UnitStats._(
     attackUnit: 2,
     attackWall: 2,
     attackBuilding: 10,
-    cost: ConstResource(iron: 100, gold: 100));
+    cost: ConstResource(magnetite: 100, uranium: 100));
 
 const frigate = UnitStats._(
     info: UnitInfo(10,
@@ -242,7 +242,7 @@ const frigate = UnitStats._(
     attackUnit: 2,
     attackWall: 15,
     attackBuilding: 0,
-    cost: ConstResource(wood: 100, iron: 100, gold: 50));
+    cost: ConstResource(adamantium: 100, magnetite: 100, uranium: 50));
 
 const canonGalleon = UnitStats._(
     info: UnitInfo(11,
@@ -256,7 +256,7 @@ const canonGalleon = UnitStats._(
     attackUnit: 2,
     attackWall: 2,
     attackBuilding: 12,
-    cost: ConstResource(wood: 100, iron: 100, gold: 100));
+    cost: ConstResource(adamantium: 100, magnetite: 100, uranium: 100));
 
 const units = [
   militia,

@@ -1,34 +1,55 @@
+class ResourceInfo {
+  final int id;
+
+  final String name;
+
+  final String image;
+
+  const ResourceInfo({this.id, this.name, this.image});
+}
+
+const adamantium = ResourceInfo(
+    id: 0,
+    name: "Adamantium",
+    image: '/media/img/resource/adamantium_small.png');
+
+const magnetite = ResourceInfo(
+    id: 1,
+    name: "Magnetite",
+    image: '/media/img/resource/magnetite_small.png');
+
+const uranium = ResourceInfo(
+    id: 2,
+    name: "Uranium",
+    image: '/media/img/resource/uranium_small.png');
+
+const resourceInfos = const [adamantium, magnetite, uranium];
+
 abstract class ResourceBase {
-  int get wood;
+  int get adamantium;
 
-  int get iron;
+  int get magnetite;
 
-  int get gold;
-
-  int get valour;
+  int get uranium;
 }
 
 class ConstResource implements ResourceBase {
-  final int wood;
+  final int adamantium;
 
-  final int iron;
+  final int magnetite;
 
-  final int gold;
-
-  final int valour;
+  final int uranium;
 
   const ConstResource(
-      {this.wood: 0, this.iron: 0, this.gold: 0, this.valour: 0});
+      {this.adamantium: 0, this.magnetite: 0, this.uranium: 0});
 }
 
 class Resources implements ResourceBase {
-  int wood;
+  int adamantium;
 
-  int iron;
+  int magnetite;
 
-  int gold;
+  int uranium;
 
-  int valour;
-
-  Resources({this.wood: 0, this.iron: 0, this.gold: 0, this.valour: 0});
+  Resources({this.adamantium: 0, this.magnetite: 0, this.uranium: 0});
 }
