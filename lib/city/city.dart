@@ -1,8 +1,8 @@
 
 abstract class ICity {
-  static const int totalSlots = 20 * 20;
+  static const int totalSlots = 10 * 10;
 
-  static const int numRows = 20;
+  static const int numRows = 10;
 
-  static const int numCols = 20;
+  static const int numCols = 10;
 }

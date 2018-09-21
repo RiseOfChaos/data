@@ -187,7 +187,7 @@ const mage = UnitStats._(
     armor: 0,
     pierceArmor: 0,
     attackUnit: 12,
-    cost: ConstResource(uranium: 150, valour: 50));
+    cost: ConstResource(uranium: 150));
 
 const dragonRider = UnitStats._(
     info: UnitInfo(7,
@@ -200,7 +200,7 @@ const dragonRider = UnitStats._(
     pierceArmor: 2,
     attackUnit: 10,
     attackBuilding: 4,
-    cost: ConstResource(uranium: 150, valour: 100));
+    cost: ConstResource(uranium: 150));
 
 const ram = UnitStats._(
     info: UnitInfo(8,
