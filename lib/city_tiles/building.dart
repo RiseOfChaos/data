@@ -167,7 +167,7 @@ const house = BuildingStats(
   info: BuildingInfo(4,
       name: 'House',
       description:
-      'Houses give workers and soldiers a good home. Resource production buildings '
+          'Houses give workers and soldiers a good home. Resource production buildings '
           'neighbouring houses get production boost. Each house offers upto 100 '
           'space for military.'),
   cost: Levels.list([
@@ -184,7 +184,7 @@ const house = BuildingStats(
   ]),
   production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
   buildTime:
-  Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
+      Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
   rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
   levelReq: 1,
 );
@@ -448,4 +448,23 @@ const buildings = [
   battery,
   artillery,
   airbase
+];
+
+const resourceBuildings = [
+  quarry,
+  ironWorks,
+  house,
+  warehouse,
+  smithery,
+  enrichmentPlant,
+  // TODO academy
+];
+
+const militaryBuildings = [
+  barrack,
+  plasmaRange,
+  battery,
+  artillery,
+  airbase,
+  // TODO castle
 ];
