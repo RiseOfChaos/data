@@ -49,7 +49,7 @@ class BuildingInfo {
   const BuildingInfo(this.id,
       {@required this.name, @required this.description});
 
-  String get imageUrl => "url(/static/images/buildings/$id.png)";
+  String get css => name.replaceAll(' ', '-');
 }
 
 class BuildingStats {
@@ -69,9 +69,6 @@ class BuildingStats {
 
   final int levelReq;
 
-  /// Is it a water building?
-  final bool water;
-
   const BuildingStats({
     @required this.info,
     @required this.cost,
@@ -79,7 +76,6 @@ class BuildingStats {
     this.production2: Levels.zeros,
     @required this.buildTime,
     @required this.rankPoint,
-    this.water: false,
     @required this.levelReq,
   });
 }
@@ -139,9 +135,9 @@ const quarry = BuildingStats(
 
 const ironWorks = BuildingStats(
   info: BuildingInfo(2,
-      name: 'Iron works',
+      name: 'Ironworks',
       description:
-          'Place Iron Works neighbouring as many bogs as possible to extract Magnetite ore. '
+          'Place Ironworks neighbouring as many bogs as possible to extract Magnetite ore. '
           'Neighbouring Houses and at most one Iron Mongery will multiply production '
           'even more.'),
   cost: Levels.list([
@@ -164,7 +160,7 @@ const ironWorks = BuildingStats(
 );
 
 const house = BuildingStats(
-  info: BuildingInfo(4,
+  info: BuildingInfo(3,
       name: 'House',
       description:
           'Houses give workers and soldiers a good home. Resource production buildings '
@@ -190,7 +186,7 @@ const house = BuildingStats(
 );
 
 const warehouse = BuildingStats(
-  info: BuildingInfo(1,
+  info: BuildingInfo(4,
       name: 'Warehouse',
       description: 'Provides storage space to store extra resources. '
           'Warehouses can be specialized to store more of a resource by placing them '
@@ -216,7 +212,7 @@ const warehouse = BuildingStats(
 );
 
 const smithery = BuildingStats(
-  info: BuildingInfo(4,
+  info: BuildingInfo(5,
       name: 'Smithery',
       description:
           'Refines Adamantium produced in Quarry. Placing the smithery '
@@ -243,12 +239,12 @@ const smithery = BuildingStats(
 );
 
 const mongery = BuildingStats(
-  info: BuildingInfo(4,
-      name: 'Iron Mongery',
+  info: BuildingInfo(6,
+      name: 'Mongery',
       description:
-          'Refines Magnetite produced in Iron Works. Iron Mongeries that neighbour '
-          'Iron Works will give them a production boost. Warehouses touching '
-          'Iron Mongeries will make additional room for storing Magnetite.'),
+          'Refines Magnetite produced in Ironworks. Ironmongeries that neighbour '
+          'Ironworks will give them a production boost. Warehouses touching '
+          'Ironmongeries will make additional room for storing Magnetite.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -269,7 +265,7 @@ const mongery = BuildingStats(
 );
 
 const uraniumMine = BuildingStats(
-  info: BuildingInfo(3,
+  info: BuildingInfo(7,
       name: 'Uranium mine',
       description:
           'Extracts Uranium ore from Uranium mines. Neighbouring Houses and at '
@@ -294,7 +290,7 @@ const uraniumMine = BuildingStats(
 );
 
 const enrichmentPlant = BuildingStats(
-  info: BuildingInfo(4,
+  info: BuildingInfo(8,
       name: 'Enrichment plant',
       description:
           'Enriches Uranium produced in Uranium Mines. Enrichment Plants boost the '
@@ -320,7 +316,7 @@ const enrichmentPlant = BuildingStats(
 );
 
 const barrack = BuildingStats(
-  info: BuildingInfo(4,
+  info: BuildingInfo(9,
       name: 'Barrack',
       description: 'Military building that recruits infantry units.'),
   cost: Levels.list([
@@ -343,7 +339,7 @@ const barrack = BuildingStats(
 );
 
 const plasmaRange = BuildingStats(
-  info: BuildingInfo(4,
+  info: BuildingInfo(10,
       name: 'Plasma range',
       description: 'Recuits ranged units that shoot Plasma rays.'),
   cost: Levels.list([
@@ -366,7 +362,7 @@ const plasmaRange = BuildingStats(
 );
 
 const battery = BuildingStats(
-  info: BuildingInfo(4,
+  info: BuildingInfo(11,
       name: 'Battery',
       description:
           'Recuits units mounting fast moving levitated vehicles powered by nuclear batteries.'),
@@ -389,9 +385,9 @@ const battery = BuildingStats(
   levelReq: 7,
 );
 
-const artillery = BuildingStats(
-  info: BuildingInfo(4,
-      name: 'Artillery',
+const artilleryYard = BuildingStats(
+  info: BuildingInfo(12,
+      name: 'Artillery yard',
       description:
           'Recuits artillery units that specialize in using radioactive material to demolish walls and buildings.'),
   cost: Levels.list([
@@ -414,7 +410,49 @@ const artillery = BuildingStats(
 );
 
 const airbase = BuildingStats(
-  info: BuildingInfo(4, name: 'Airbase', description: 'Recruits aircrafts.'),
+  info: BuildingInfo(13, name: 'Airbase', description: 'Recruits aircrafts.'),
+  cost: Levels.list([
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+  ]),
+  production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
+  buildTime:
+      Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
+  rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
+  levelReq: 8,
+);
+
+const academy = BuildingStats(
+  info: BuildingInfo(14, name: 'Academy', description: 'TODO.'),
+  cost: Levels.list([
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+    ConstResource(adamantium: 50, magnetite: 50),
+  ]),
+  production1: Levels.list([33, 67, 100, 142, 183, 233, 292, 350, 417, 500]),
+  buildTime:
+  Levels.list([15, 54, 360, 2700, 6075, 12135, 22500, 36000, 56700, 86400]),
+  rankPoint: Levels.list([1, 3, 6, 12, 20, 30, 42, 57, 75, 100]),
+  levelReq: 8,
+);
+
+const commandCenter = BuildingStats(
+  info: BuildingInfo(15, name: 'Command center', description: 'TODO.'),
   cost: Levels.list([
     ConstResource(adamantium: 50, magnetite: 50),
     ConstResource(adamantium: 50, magnetite: 50),
@@ -438,16 +476,19 @@ const buildings = [
   cityCenter,
   quarry,
   ironWorks,
-  uraniumMine,
-  smithery,
-  enrichmentPlant,
-  warehouse,
   house,
+  warehouse,
+  smithery,
+  mongery,
+  uraniumMine,
+  enrichmentPlant,
   barrack,
   plasmaRange,
   battery,
-  artillery,
-  airbase
+  artilleryYard,
+  airbase,
+  academy,
+  commandCenter,
 ];
 
 const resourceBuildings = [
@@ -456,15 +497,16 @@ const resourceBuildings = [
   house,
   warehouse,
   smithery,
+  mongery,
   enrichmentPlant,
-  // TODO academy
+  academy,
 ];
 
 const militaryBuildings = [
   barrack,
   plasmaRange,
   battery,
-  artillery,
+  artilleryYard,
   airbase,
-  // TODO castle
+  commandCenter,
 ];
