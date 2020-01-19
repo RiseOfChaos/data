@@ -1,3 +1,5 @@
+import 'package:data/data.dart';
+
 class CityResourceTileInfo {
   final int id;
 
@@ -10,13 +12,17 @@ class CityResourceTileInfo {
   const CityResourceTileInfo(this.id, {this.name, this.description});
 }
 
-const cityForrest = CityResourceTileInfo(0,
+const cityForrest = CityResourceTileInfo(CityNodeIds.forest,
     name: 'Forrest',
     description:
-        'Forrest resource. Build Lumber Camps around it to collect wood.');
+        'Forrest terrain. Build Quarries around it to mine Adamantium.');
 
-const cityBog = CityResourceTileInfo(1,
-    name: 'Iron bog',
-    description: 'Iron resource. Build Iron Works around it to collect iron.');
+const cityMountain = CityResourceTileInfo(CityNodeIds.mountain,
+    name: 'Mountain',
+    description: 'Mountainous terrain. Build Magnetite mines around it to mine Magnetite.');
 
-const cityResources = [cityForrest, cityBog];
+const citySwamp = CityResourceTileInfo(CityNodeIds.marsh,
+    name: 'Swamp',
+    description: 'Swamp terrain. Build Uranium mines around it to mine Uranium');
+
+const cityResources = [cityForrest, cityMountain, citySwamp];

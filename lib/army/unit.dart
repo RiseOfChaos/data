@@ -2,37 +2,19 @@ import 'package:meta/meta.dart';
 
 import '../resource/resource.dart';
 
-class UnitType {
-  final int id;
+const maxCommandCancelDuration = Duration(minutes: 15);
 
-  final String name;
-
-  const UnitType._(this.id, this.name);
-
-  bool get isInfantry => (id & 1) != 0;
-
-  bool get isRanged => (id & 2) != 0;
-
-  bool get isMounted => (id & 4) != 0;
-
-  bool get isMagic => (id & 8) != 0;
-
-  bool get isArtillery => (id & 16) != 0;
-
-  static const infantry = UnitType._(1, 'Infantry');
-
-  static const ranged = UnitType._(2, 'Ranged');
-
-  static const mounted = UnitType._(4, 'Mounted');
-
-  static const mountedRanged = UnitType._(6, 'Mounted ranged');
-
-  static const magic = UnitType._(8, 'Magic');
-
-  static const artillery = UnitType._(16, 'Artillery');
+abstract class UnitIds {
+  static const brute = 0;
+  static const viper = 1;
+  static const alphaGuardian = 2;
+  static const plasmaRanger = 3;
+  static const stingray = 4;
+  static const blaster = 5;
+  static const catapult = 6;
 }
 
-class UnitInfo {
+class UnitStats {
   final int id;
 
   /// Name of the unit
@@ -44,23 +26,8 @@ class UnitInfo {
   /// offensive.
   final bool offensive;
 
-  /// Unit type.
-  final UnitType unitType;
-
   /// Description for the unit
   final String description;
-
-  const UnitInfo(this.id,
-      {@required this.name,
-      @required this.offensive,
-      @required this.unitType,
-      @required this.description});
-
-  String get imageUrl => "url(/static/images/units/$id.png)";
-}
-
-class UnitStats {
-  final UnitInfo info;
 
   /// HitPoints for the unit
   final int hitPoint;
@@ -76,84 +43,81 @@ class UnitStats {
 
   final ConstResource cost;
 
-  // TODO recruitment speed
+  final int recruitmentSpeed;
 
   // TODO Transport
 
   final int movementSpeed;
 
-  const UnitStats._(
-      {@required this.info,
-      @required this.hitPoint,
-      @required this.armor,
-      @required this.pierceArmor,
-      this.attackUnit,
-      this.attackWall: 0,
-      this.attackBuilding: 0,
-      this.space: 1,
-      this.movementSpeed: 1,
-      @required this.cost});
+  final int minBuildingLevelRequired;
 
-  int get id => info.id;
+  const UnitStats._(
+    this.id, {
+    @required this.name,
+    @required this.offensive,
+    @required this.description,
+    @required this.hitPoint,
+    @required this.armor,
+    @required this.pierceArmor,
+    this.attackUnit,
+    this.attackWall: 0,
+    this.attackBuilding: 0,
+    this.space: 1,
+    this.movementSpeed: 1,
+    @required this.recruitmentSpeed,
+    @required this.cost,
+    this.minBuildingLevelRequired,
+  });
+
+  String get imageUrl => "url(/static/images/units/$id.png)";
 }
 
-const militia = UnitStats._(
-    info: UnitInfo(0,
-        name: 'Militia',
-        offensive: true,
-        description:
-            "Basic offensive infantry swordsman. Quick and cheap to create.",
-        unitType: UnitType.infantry),
+const brute = UnitStats._(UnitIds.brute,
+    name: 'Brute',
+    offensive: true,
+    description:
+        "Basic offensive infantry swordsman. Quick and cheap to create.",
     hitPoint: 50,
     armor: 0,
     pierceArmor: 0,
     attackUnit: 5,
     cost: ConstResource(magnetite: 50));
 
-const spearMan = UnitStats._(
-    info: UnitInfo(1,
-        name: 'Spearman',
-        offensive: false,
-        description:
-            "Defensive infantry unit. Effective against mounted units.",
-        unitType: UnitType.infantry),
+const viper = UnitStats._(UnitIds.viper,
+    name: 'Viper',
+    offensive: false,
+    description: "Defensive infantry unit. Effective against mounted units.",
     hitPoint: 50,
     armor: 1,
     pierceArmor: 0,
     attackUnit: 2,
     cost: ConstResource(adamantium: 20, magnetite: 70));
 
-const skirmisher = UnitStats._(
-    info: UnitInfo(2,
-        name: 'Skirmisher',
-        offensive: false,
-        description: "Basic ranged unit. Effective against infantry.",
-        unitType: UnitType.ranged),
+const alphaGuardian = UnitStats._(UnitIds.alphaGuardian,
+    name: 'Alpha guardian',
+    offensive: false,
+    description: "Basic ranged unit. Effective against infantry.",
     hitPoint: 30,
     armor: 0,
     pierceArmor: 0,
     attackUnit: 2,
     cost: ConstResource(adamantium: 40, magnetite: 30));
 
-const archer = UnitStats._(
-    info: UnitInfo(3,
-        name: 'Archer',
-        offensive: false,
-        description: "Ranged unit. Effective against infantry.",
-        unitType: UnitType.ranged),
+const plasmaRanger = UnitStats._(UnitIds.plasmaRanger,
+    name: 'Plasma ranger',
+    offensive: false,
+    description: "Ranged unit. Effective against infantry.",
     hitPoint: 35,
     armor: 0,
     pierceArmor: 0,
     attackUnit: 5,
     cost: ConstResource(adamantium: 30, magnetite: 30, uranium: 30));
 
-const knight = UnitStats._(
-    info: UnitInfo(4,
-        name: 'Knight',
-        offensive: true,
-        description:
-            "Mounted unit. Effective in open field battles. High pierce armor helps them combat archer fire.",
-        unitType: UnitType.mounted),
+const stingray = UnitStats._(UnitIds.stingray,
+    name: 'Stingray',
+    offensive: true,
+    description:
+        "Mounted unit. Effective in open field battles. High pierce armor helps them combat archer fire.",
     hitPoint: 200,
     armor: 0,
     pierceArmor: 5,
@@ -162,13 +126,10 @@ const knight = UnitStats._(
     movementSpeed: 2,
     cost: ConstResource(magnetite: 100, uranium: 50));
 
-const cavalryArcher = UnitStats._(
-    info: UnitInfo(5,
-        name: 'Cavalry archer',
-        offensive: false,
-        description:
-            "Fast moving archers. Defensive unit but does ok in offense.",
-        unitType: UnitType.mountedRanged),
+const blaster = UnitStats._(UnitIds.blaster,
+    name: 'Blaster',
+    offensive: false,
+    description: "Fast moving archers. Defensive unit but does ok in offense.",
     hitPoint: 100,
     armor: 1,
     pierceArmor: 3,
@@ -177,98 +138,38 @@ const cavalryArcher = UnitStats._(
     movementSpeed: 2,
     cost: ConstResource(adamantium: 100, uranium: 75));
 
-const mage = UnitStats._(
-    info: UnitInfo(6,
-        name: 'Mage',
-        offensive: false,
-        description: "Magical unit.",
-        unitType: UnitType.magic),
+const catapult = UnitStats._(UnitIds.catapult,
+    name: 'Catapult',
+    offensive: false,
+    description: "Magical unit.",
     hitPoint: 30,
     armor: 0,
     pierceArmor: 0,
     attackUnit: 12,
     cost: ConstResource(uranium: 150));
 
-const dragonRider = UnitStats._(
-    info: UnitInfo(7,
-        name: 'Dragon riders',
-        offensive: true,
-        description: "Magical unit. Weak against mage.",
-        unitType: UnitType.magic),
-    hitPoint: 100,
-    armor: 0,
-    pierceArmor: 2,
-    attackUnit: 10,
-    attackBuilding: 4,
-    cost: ConstResource(uranium: 150));
-
-const ram = UnitStats._(
-    info: UnitInfo(8,
-        name: 'Ram',
-        offensive: true,
-        description: "Effective aginst walls.",
-        unitType: UnitType.artillery),
-    hitPoint: 50,
-    armor: 0,
-    pierceArmor: 5,
-    attackUnit: 2,
-    attackWall: 10,
-    attackBuilding: 2,
-    cost: ConstResource(magnetite: 50, uranium: 50));
-
-const catapult = UnitStats._(
-    info: UnitInfo(9,
-        name: 'Catapults',
-        offensive: true,
-        description: "Effective against buildings.",
-        unitType: UnitType.artillery),
-    hitPoint: 50,
-    armor: 0,
-    pierceArmor: 0,
-    attackUnit: 2,
-    attackWall: 2,
-    attackBuilding: 10,
-    cost: ConstResource(magnetite: 100, uranium: 100));
-
-const frigate = UnitStats._(
-    info: UnitInfo(10,
-        name: 'Frigate',
-        offensive: true,
-        description: "Carries troops. Effective aginst walls.",
-        unitType: UnitType.artillery),
-    hitPoint: 50,
-    armor: 0,
-    pierceArmor: 5,
-    attackUnit: 2,
-    attackWall: 15,
-    attackBuilding: 0,
-    cost: ConstResource(adamantium: 100, magnetite: 100, uranium: 50));
-
-const canonGalleon = UnitStats._(
-    info: UnitInfo(11,
-        name: 'Canon galleon',
-        offensive: true,
-        description: "Effective against buildings.",
-        unitType: UnitType.artillery),
-    hitPoint: 50,
-    armor: 0,
-    pierceArmor: 0,
-    attackUnit: 2,
-    attackWall: 2,
-    attackBuilding: 12,
-    cost: ConstResource(adamantium: 100, magnetite: 100, uranium: 100));
-
 const units = [
-  militia,
-  spearMan,
-  skirmisher,
-  archer,
-  knight,
-  cavalryArcher,
-  mage,
-  dragonRider,
-  ram,
+  brute,
+  viper,
+  alphaGuardian,
+  plasmaRanger,
+  stingray,
+  blaster,
   catapult,
-  frigate,
-  canonGalleon,
+];
+
+const meleeUnits = <UnitStats>[
+  brute,
+  viper,
+  alphaGuardian,
+];
+
+const rangedUnits = <UnitStats>[
+  plasmaRanger,
+  stingray,
+];
+
+const siegeUnits = <UnitStats>[
+  blaster,
+  catapult,
 ];
