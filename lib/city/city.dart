@@ -11,9 +11,9 @@ export 'trade.dart';
 abstract class C {
   static const int totalSlots = numRows * numCols;
 
-  static const int numRows = 10;
+  static const int numRows = 20;
 
-  static const int numCols = 10;
+  static const int numCols = 20;
 
   static bool isBuilding(int type) => type < 100;
 

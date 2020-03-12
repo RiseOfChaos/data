@@ -11,7 +11,7 @@ class Trade {
 
   String toId;
 
-  bool returning;
+  bool isReturning;
 
   DateTime startedAt;
 
@@ -23,7 +23,7 @@ class Trade {
       this.resources,
       this.fromId,
       this.toId,
-      this.returning,
+      this.isReturning,
       this.startedAt,
       this.finishesAt});
 }
