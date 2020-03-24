@@ -9,6 +9,9 @@ environment:
 
 dependencies:
   meta:
+  jaguar_serializer:
 
 dev_dependencies:
   test:
+  build_runner:
+  jaguar_serializer_cli:
