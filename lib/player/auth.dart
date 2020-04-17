@@ -67,4 +67,18 @@ class LoginRequest {
   String usernameOrEmail;
 
   String password;
+
+  List<ValidationError> validate() {
+    final ret = <ValidationError>[];
+
+    if (usernameOrEmail == null || usernameOrEmail.isEmpty) {
+      ret.add(ValidationError('usernameOrEmail', 'Required'));
+    }
+
+    if (password == null || password.isEmpty) {
+      ret.add(ValidationError('password', 'Required'));
+    }
+
+    return ret;
+  }
 }
